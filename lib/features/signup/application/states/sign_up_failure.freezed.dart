@@ -1,0 +1,279 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'sign_up_failure.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+/// @nodoc
+mixin _$SignUpFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() storage,
+    required TResult Function() alreadyExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? storage,
+    TResult? Function()? alreadyExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? storage,
+    TResult Function()? alreadyExist,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_AlreadyExist value) alreadyExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Storage value)? storage,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Storage value)? storage,
+    TResult Function(_AlreadyExist value)? alreadyExist,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SignUpFailureCopyWith<$Res> {
+  factory $SignUpFailureCopyWith(
+          SignUpFailure value, $Res Function(SignUpFailure) then) =
+      _$SignUpFailureCopyWithImpl<$Res, SignUpFailure>;
+}
+
+/// @nodoc
+class _$SignUpFailureCopyWithImpl<$Res, $Val extends SignUpFailure>
+    implements $SignUpFailureCopyWith<$Res> {
+  _$SignUpFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$StorageImplCopyWith<$Res> {
+  factory _$$StorageImplCopyWith(
+          _$StorageImpl value, $Res Function(_$StorageImpl) then) =
+      __$$StorageImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StorageImplCopyWithImpl<$Res>
+    extends _$SignUpFailureCopyWithImpl<$Res, _$StorageImpl>
+    implements _$$StorageImplCopyWith<$Res> {
+  __$$StorageImplCopyWithImpl(
+      _$StorageImpl _value, $Res Function(_$StorageImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StorageImpl implements _Storage {
+  _$StorageImpl();
+
+  @override
+  String toString() {
+    return 'SignUpFailure.storage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StorageImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() storage,
+    required TResult Function() alreadyExist,
+  }) {
+    return storage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? storage,
+    TResult? Function()? alreadyExist,
+  }) {
+    return storage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? storage,
+    TResult Function()? alreadyExist,
+    required TResult orElse(),
+  }) {
+    if (storage != null) {
+      return storage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_AlreadyExist value) alreadyExist,
+  }) {
+    return storage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Storage value)? storage,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
+  }) {
+    return storage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Storage value)? storage,
+    TResult Function(_AlreadyExist value)? alreadyExist,
+    required TResult orElse(),
+  }) {
+    if (storage != null) {
+      return storage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Storage implements SignUpFailure {
+  factory _Storage() = _$StorageImpl;
+}
+
+/// @nodoc
+abstract class _$$AlreadyExistImplCopyWith<$Res> {
+  factory _$$AlreadyExistImplCopyWith(
+          _$AlreadyExistImpl value, $Res Function(_$AlreadyExistImpl) then) =
+      __$$AlreadyExistImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AlreadyExistImplCopyWithImpl<$Res>
+    extends _$SignUpFailureCopyWithImpl<$Res, _$AlreadyExistImpl>
+    implements _$$AlreadyExistImplCopyWith<$Res> {
+  __$$AlreadyExistImplCopyWithImpl(
+      _$AlreadyExistImpl _value, $Res Function(_$AlreadyExistImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AlreadyExistImpl implements _AlreadyExist {
+  _$AlreadyExistImpl();
+
+  @override
+  String toString() {
+    return 'SignUpFailure.alreadyExist()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AlreadyExistImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() storage,
+    required TResult Function() alreadyExist,
+  }) {
+    return alreadyExist();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? storage,
+    TResult? Function()? alreadyExist,
+  }) {
+    return alreadyExist?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? storage,
+    TResult Function()? alreadyExist,
+    required TResult orElse(),
+  }) {
+    if (alreadyExist != null) {
+      return alreadyExist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_AlreadyExist value) alreadyExist,
+  }) {
+    return alreadyExist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Storage value)? storage,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
+  }) {
+    return alreadyExist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Storage value)? storage,
+    TResult Function(_AlreadyExist value)? alreadyExist,
+    required TResult orElse(),
+  }) {
+    if (alreadyExist != null) {
+      return alreadyExist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AlreadyExist implements SignUpFailure {
+  factory _AlreadyExist() = _$AlreadyExistImpl;
+}
