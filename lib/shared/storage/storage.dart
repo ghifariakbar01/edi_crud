@@ -9,7 +9,7 @@ abstract class Storage<T> {
 
   Future<int> save(T json);
 
-  Future<Database> open();
+  Future<int> update(T json);
 
-  Future<int> getLastId();
+  Future<Database> open();
 }

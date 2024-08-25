@@ -6,7 +6,7 @@ part of 'auth_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authStorageHash() => r'0dd6725d24b93fa9e60b449980c27fd4170669ed';
+String _$authStorageHash() => r'e54df74b306f8b1a516e3a9060200be50ba97f4c';
 
 /// See also [authStorage].
 @ProviderFor(authStorage)
@@ -20,7 +20,7 @@ final authStorageProvider = Provider<AuthStorage>.internal(
 );
 
 typedef AuthStorageRef = ProviderRef<AuthStorage>;
-String _$authRepositoryHash() => r'f7ef076771fc24cf2b1932c8339b490a5adab8ce';
+String _$authRepositoryHash() => r'41b0685c5a28a50d06cdf5bdec1d7e09b2bfef01';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
@@ -35,7 +35,7 @@ final authRepositoryProvider = Provider<AuthRepository>.internal(
 );
 
 typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
-String _$authNotifierHash() => r'ebcd199ed9191c03361f13fad52cc5197d644392';
+String _$authNotifierHash() => r'3f5380c843c37a477c0bb81e1afec36f2675704c';
 
 /// See also [AuthNotifier].
 @ProviderFor(AuthNotifier)

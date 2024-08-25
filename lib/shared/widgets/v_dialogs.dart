@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../constants/assets.dart';
 import '../../style/style.dart';
 
 class VAlertDialog extends ConsumerWidget {

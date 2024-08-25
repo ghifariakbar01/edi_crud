@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_up_notifier.dart';
+part of 'providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signUpNotifierHash() => r'a32d358a79675c902b3d3a256d573890c10c152d';
+String _$sqfliteDatabaseHash() => r'cfba564c112c1374bf2b51adc67ff8e5614b0b0f';
 
-/// See also [SignUpNotifier].
-@ProviderFor(SignUpNotifier)
-final signUpNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<SignUpNotifier, SignUpState>.internal(
-  SignUpNotifier.new,
-  name: r'signUpNotifierProvider',
+/// See also [SqfliteDatabase].
+@ProviderFor(SqfliteDatabase)
+final sqfliteDatabaseProvider =
+    AsyncNotifierProvider<SqfliteDatabase, Database>.internal(
+  SqfliteDatabase.new,
+  name: r'sqfliteDatabaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$signUpNotifierHash,
+      : _$sqfliteDatabaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SignUpNotifier = AutoDisposeAsyncNotifier<SignUpState>;
+typedef _$SqfliteDatabase = AsyncNotifier<Database>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

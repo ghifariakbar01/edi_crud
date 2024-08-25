@@ -40,9 +40,10 @@ mixin Themes {
       hintText: hintText,
       suffixIcon: icon ?? null,
       border: InputBorder.none,
-      focusedBorder: Themes.focused(color: Palette.green),
+      focusedBorder: Themes.focused(),
       enabledBorder: Themes.notFocused(),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+      labelText: hintText,
       hintStyle: Themes.customColor(
         14,
         fontWeight: FontWeight.normal,

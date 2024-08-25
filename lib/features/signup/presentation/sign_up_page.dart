@@ -1,3 +1,4 @@
+import 'package:edi_crud/features/signup/application/sign_up_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -5,19 +6,17 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../shared/auth/application/auth_notifier.dart';
-import '../../../shared/routes/route_names.dart';
 import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/widgets/app_logo.dart';
 import '../../../shared/widgets/v_button.dart';
 import '../../../style/style.dart';
-import '../application/sign_in_notifier.dart';
-import '../application/states/sign_in_state.dart';
+import '../../signup/application/states/sign_up_state.dart';
 
-class SignInPage extends HookConsumerWidget {
-  const SignInPage({super.key});
+class SignUpPage extends HookConsumerWidget {
+  const SignUpPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<AsyncValue<SignInState>>(signInNotifierProvider,
+    ref.listen<AsyncValue<SignUpState>>(signUpNotifierProvider,
         (_, state) async {
       if (!state.isLoading &&
           state.hasValue &&
@@ -30,7 +29,7 @@ class SignInPage extends HookConsumerWidget {
           failure: (failure) => DialogHelper.showCustomDialog(
             context,
             failure.maybeWhen(
-              notFound: () => 'User Tidak Ditemukan Ada',
+              alreadyExist: () => 'User Sudah Ada',
               orElse: () => 'Storage',
             ),
           ),
@@ -52,9 +51,10 @@ class SignInPage extends HookConsumerWidget {
     final passwordVisible = useState(false);
 
     final namaController = useTextEditingController();
-
+    final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
+    final isAdmin = useState(false);
     final isShowError = useState(false);
 
     final _formKey = useMemoized(GlobalKey<FormState>.new, const []);
@@ -70,7 +70,7 @@ class SignInPage extends HookConsumerWidget {
               Form(
                 key: _formKey,
                 autovalidateMode: isShowError.value
-                    ? AutovalidateMode.always
+                    ? AutovalidateMode.onUserInteraction
                     : AutovalidateMode.disabled,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -92,6 +92,26 @@ class SignInPage extends HookConsumerWidget {
                           } else {
                             if (value.isEmpty) {
                               return 'Mohon Isi Nama';
+                            }
+                            return null;
+                          }
+                        }),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                        controller: emailController,
+                        decoration: Themes.formStyle('Masukkan email'),
+                        style: Themes.customColor(14,
+                            fontWeight: FontWeight.normal),
+                        cursorColor: Palette.primaryColor,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Mohon Isi Email';
+                          } else {
+                            if (value.isEmpty) {
+                              return 'Mohon Isi Email';
                             }
                             return null;
                           }
@@ -126,29 +146,48 @@ class SignInPage extends HookConsumerWidget {
                             return null;
                           }
                         }),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Checkbox(
+                            key: UniqueKey(),
+                            checkColor: Theme.of(context).primaryColorLight,
+                            value: isAdmin.value,
+                            onChanged: (value) {
+                              if (value != null) {
+                                isAdmin.value = value;
+                              }
+                            }),
+                        Text(
+                          'Admin',
+                          style: Themes.customColor(14),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
                   ],
                 ),
               ),
               const SizedBox(height: 8),
               VButton(
-                  label: 'Sign In',
+                  label: 'Sign Up',
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      return ref.read(signInNotifierProvider.notifier).signIn(
+                      return ref.read(signUpNotifierProvider.notifier).signUp(
                             nama: namaController.text,
+                            email: emailController.text,
                             password: passwordController.text,
+                            isAdmin: isAdmin.value,
                           );
-                    } else {
-                      isShowError.value = true;
                     }
                   }),
               TextButton(
-                onPressed: () => context.pushNamed(
-                  RouteNames.signUpRoute,
-                ),
+                onPressed: context.pop,
                 child: Text(
-                  'Sign Up',
+                  'Sign In',
                   style: Themes.customColor(11),
                 ),
               )

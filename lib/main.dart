@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:edi_crud/shared/widgets/v_async_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'shared/auth/application/auth_notifier.dart';
 import 'shared/auth/application/states/auth_state.dart';
-import 'shared/routes/route_notifier.dart';
+import 'shared/providers/providers.dart';
 import 'style/style.dart';
 
 void main() {
@@ -15,7 +14,7 @@ void main() {
 }
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
-  await clear();
+  // await clear();
   await ref.read(authNotifierProvider.notifier).checkAndUpdateAuthStatus();
   return unit;
 });
@@ -34,25 +33,11 @@ class MyApp extends ConsumerWidget {
 
     final authNotifier = ref.watch(authNotifierProvider);
 
-    final router = RouterNotifier();
-
-    final signedInRouter = GoRouter(
-      refreshListenable: router,
-      routes: router.routes,
-      redirect: router.onAuthenticated,
-    );
-
-    final initialRouter = GoRouter(
-      refreshListenable: router,
-      routes: router.routes,
-      redirect: router.redirectLogic,
-    );
-
     return VAsyncWidgetScaffoldWrappedMaterial<AuthState>(
       value: authNotifier,
       data: (auth) => auth.maybeWhen(
         authenticated: () => MaterialApp.router(
-          title: 'PT EDI CRUD Test - Ghifari Akbar',
+          title: 'PT EDI CRUD Test - (Signed In) - Ghifari Akbar ',
           theme: Themes.theme(context),
           builder: (_, c) => c ?? Container(),
           routerDelegate: signedInRouter.routerDelegate,

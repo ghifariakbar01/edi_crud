@@ -1,3 +1,5 @@
+import 'package:edi_crud/shared/providers/providers.dart';
+import 'package:edi_crud/shared/user/application/user_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../infrastructures/auth_repository.dart';
@@ -8,13 +10,16 @@ part 'auth_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 AuthStorage authStorage(AuthStorageRef ref) {
-  return AuthStorage();
+  return AuthStorage(
+    ref.watch(sqfliteDatabaseProvider.future),
+  );
 }
 
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
   return AuthRepository(
     ref.watch(authStorageProvider),
+    ref.watch(userStorageProvider),
   );
 }
 

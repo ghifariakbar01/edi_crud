@@ -10,21 +10,19 @@ import '../../user/application/user.dart';
 
 class AuthRepository {
   AuthRepository(
-    this._credentialsStorage,
+    this._authStorage,
+    this._userStorage,
   );
 
-  final Storage<User> _credentialsStorage;
+  final Storage<User> _authStorage;
+  final Storage<User> _userStorage;
 
   Future<bool> isSignedIn() => _getSignedInData().then(
         (credentials) => credentials != null,
       );
 
   Future<int> signOut() async {
-    final rows = _credentialsStorage.clear();
-
-    assert(rows == 1);
-
-    return 1;
+    return _authStorage.clear();
   }
 
   Future<Either<SignUpFailure, Unit>> signUp({
@@ -34,26 +32,32 @@ class AuthRepository {
     required bool isActive,
     required bool isAdmin,
   }) async {
-    final isUserExist = await _isUserExist(
+    final userDb = await _getUserBy(
       nama: nama,
-      email: email,
       password: password,
     );
 
-    if (isUserExist) {
+    if (userDb != null) {
       return left(SignUpFailure.alreadyExist());
     }
 
+    final user = User(
+        id: 0,
+        nama: nama,
+        email: email,
+        password: password,
+        isActive: isActive == true ? 1 : 0,
+        isAdmin: isAdmin == true ? 1 : 0);
+
     try {
-      await _save(
-        User(
-            id: 0,
-            nama: nama,
-            email: email,
-            password: password,
-            isActive: isActive == true ? 1 : 0,
-            isAdmin: isAdmin == true ? 1 : 0),
-      );
+      await _save(user);
+    } catch (err) {
+      log('err $err');
+      return left(SignUpFailure.storage());
+    }
+
+    try {
+      await _saveToUserDb(user);
     } catch (err) {
       log('err $err');
       return left(SignUpFailure.storage());
@@ -64,17 +68,21 @@ class AuthRepository {
 
   Future<Either<SignInFailure, Unit>> signIn({
     required String nama,
-    required String email,
     required String password,
-    required bool isAdmin,
   }) async {
-    final isUserExist = await _isUserExist(
+    final userDb = await _getUserBy(
       nama: nama,
-      email: email,
       password: password,
     );
 
-    if (isUserExist) {
+    if (userDb != null) {
+      try {
+        await _save(userDb);
+      } catch (err) {
+        log('err $err');
+        return left(SignInFailure.storage());
+      }
+
       return right(unit);
     } else {
       return left(SignInFailure.notFound());
@@ -82,45 +90,50 @@ class AuthRepository {
   }
 
   Future<int> _save(User user) async {
-    return _credentialsStorage.save(user);
+    return _authStorage.save(user);
   }
 
-  Future<bool> _isUserExist({
+  Future<int> _saveToUserDb(User user) async {
+    return _userStorage.save(user);
+  }
+
+  Future<User?> _getUserBy({
     required String nama,
-    required String email,
     required String password,
   }) async {
-    final users = await _credentialsStorage.read();
-    if (users == null) {
-      return false;
-    }
-
-    final search = users.firstWhereOrNull((e) => e.nama == nama);
-    if (search == null) {
-      return false;
-    }
-
-    return true;
-  }
-
-  Future<List<User>?> _getSignedInData() async {
-    final users = await _credentialsStorage.read();
-
-    if (users == null) {
+    final user = await _userStorage.read();
+    if (user == null) {
       return null;
     }
 
-    assert(users.length == 0 || users.length == 1);
+    if (user.length == 0) {
+      return null;
+    }
 
-    return users;
+    final item = user.firstWhereOrNull((e) =>
+        e.nama.toLowerCase() == nama.toLowerCase() &&
+        e.password.toLowerCase() == password.toLowerCase());
+
+    if (item == null) {
+      return null;
+    }
+
+    return item;
   }
 
-  // LOGOUT
-  // try {
-  //   await _remoteService.signOut();
-  // } on RestApiException catch (e) {
-  //   return left(AuthFailure.server(e.errorCode));
-  // } on NoConnectionException {
-  //   // Ignoring
-  // }
+  Future<User?> _getSignedInData() async {
+    final user = await _authStorage.read();
+
+    if (user == null) {
+      return null;
+    }
+
+    if (user.length > 1 || user.length == 0) {
+      return null;
+    }
+
+    final item = user.first;
+
+    return item;
+  }
 }

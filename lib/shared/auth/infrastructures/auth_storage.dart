@@ -4,41 +4,36 @@ import '../../storage/storage.dart';
 import '../../user/application/user.dart';
 
 class AuthStorage implements Storage<User> {
-  AuthStorage();
+  AuthStorage(this._db);
+
+  final Future<Database> _db;
 
   static const _key = 'auth_db.db';
   static const _tableName = 'TM_USER';
 
   @override
   Future<int> clear() async {
-    Database _db = await open();
-
-    return _db.delete(_tableName);
+    final db = await _db;
+    return db.delete(_tableName);
   }
 
   @override
   Future<int> removeById(int id) async {
-    Database _db = await open();
-
-    return _db.delete(_tableName, where: 'id = $id');
+    final db = await _db;
+    return db.delete(_tableName, where: 'id = $id');
   }
 
   @override
   Future<List<User>?> read() async {
-    Database _db = await open();
-
-    final storedCredentials = await _db.query(_tableName);
+    final db = await _db;
+    final storedCredentials = await db.query(_tableName);
 
     if (storedCredentials.isEmpty) {
       return null;
     }
 
     try {
-      final list = storedCredentials
-          .map((e) => User.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-      return list;
+      return [User.fromJson(storedCredentials.first as Map<String, dynamic>)];
     } on FormatException {
       return null;
     }
@@ -46,12 +41,21 @@ class AuthStorage implements Storage<User> {
 
   @override
   Future<int> save(User user) async {
-    Database _db = await open();
-    final _id = await getLastId();
-
-    return _db.insert(
+    final db = await _db;
+    return db.insert(
       _tableName,
-      user.copyWith(id: _id).toJson(),
+      user.toJson(),
+    );
+  }
+
+  @override
+  Future<int> update(User user) async {
+    final db = await _db;
+
+    return db.update(
+      _tableName,
+      user.toJson(),
+      where: 'id = ${user.id}',
     );
   }
 
@@ -65,18 +69,5 @@ class AuthStorage implements Storage<User> {
             'CREATE TABLE $_tableName (id INTEGER PRIMARY KEY, nama TEXT, email TEXT, password TEXT, is_active INTEGER, is_admin INTEGER)');
       },
     );
-  }
-
-  @override
-  getLastId() async {
-    final db = await open();
-
-    final query = await db.query(_tableName);
-
-    if (query.isEmpty) {
-      return 1;
-    } else {
-      return (query.first as int);
-    }
   }
 }

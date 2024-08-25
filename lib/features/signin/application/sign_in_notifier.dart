@@ -14,18 +14,14 @@ class SignInNotifier extends _$SignInNotifier {
 
   Future<void> signIn({
     required String nama,
-    required String email,
     required String password,
-    required bool isAdmin,
   }) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
       final response = await ref.read(authRepositoryProvider).signIn(
             nama: nama,
-            email: email,
             password: password,
-            isAdmin: isAdmin,
           );
 
       return response.fold(

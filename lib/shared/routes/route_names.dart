@@ -11,9 +11,9 @@ class RouteNames {
   static const signUpNameRoute = '/signUp';
   static const signUpRoute = '/signUp';
 
-  static const profileNameRoute = '/profile';
-  static const profileRoute = '/profile';
+  static const detailProfileNameRoute = '/detailProfile';
+  static const detailProfileRoute = '/detailProfile';
 
-  static const editProfileNameRoute = '/editProfile';
-  static const editProfileRoute = '/editProfile';
+  static const createUserNameRoute = '/createUser';
+  static const createUserRoute = '/createUser';
 }
