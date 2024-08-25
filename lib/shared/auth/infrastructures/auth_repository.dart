@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 
@@ -52,15 +50,13 @@ class AuthRepository {
     try {
       await _save(user);
     } catch (err) {
-      log('err $err');
-      return left(SignUpFailure.storage());
+      return left(SignUpFailure.storage(err.toString()));
     }
 
     try {
       await _saveToUserDb(user);
     } catch (err) {
-      log('err $err');
-      return left(SignUpFailure.storage());
+      return left(SignUpFailure.storage(err.toString()));
     }
 
     return right(unit);
@@ -79,8 +75,7 @@ class AuthRepository {
       try {
         await _save(userDb);
       } catch (err) {
-        log('err $err');
-        return left(SignInFailure.storage());
+        return left(SignInFailure.storage(err.toString()));
       }
 
       return right(unit);

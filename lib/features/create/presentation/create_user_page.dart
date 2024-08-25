@@ -1,10 +1,11 @@
-import 'package:edi_crud/shared/user/application/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../shared/user/application/user_notifier.dart';
+import '../../../shared/utils/alert_helper.dart';
 import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/widgets/v_button.dart';
 import '../../../style/style.dart';
@@ -27,14 +28,18 @@ class CreateUserPage extends HookConsumerWidget {
         value.when(
           failure: (failure) => DialogHelper.showCustomDialog(
             context,
-            failure.maybeWhen(
+            failure.when(
               alreadyExist: () => 'User Sudah Ada',
-              orElse: () => 'Storage',
+              storage: (err) => 'Storage Error : $err',
             ),
           ),
           success: () async {
-            context.pop();
-            return ref.read(usersNotifierProvider.notifier).getAllUser();
+            return AlertHelper.showSnackBar(context,
+                message: 'Create User Berhasil',
+                color: Palette.green, onDone: () async {
+              context.pop();
+              return ref.read(usersNotifierProvider.notifier).getAllUser();
+            });
           },
           initial: () => null,
         );

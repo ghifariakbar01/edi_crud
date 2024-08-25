@@ -1,6 +1,6 @@
-import 'package:edi_crud/shared/auth/application/auth_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../shared/auth/application/auth_notifier.dart';
 import 'states/sign_in_state.dart';
 
 part 'sign_in_notifier.g.dart';

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 
@@ -42,8 +40,7 @@ class CreateUserRepository {
     try {
       await _saveToUserDb(user);
     } catch (err) {
-      log('err $err');
-      return left(CreateUserFailure.storage());
+      return left(CreateUserFailure.storage(err.toString()));
     }
 
     return right(unit);

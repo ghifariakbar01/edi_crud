@@ -1,4 +1,3 @@
-import 'package:edi_crud/features/signup/application/sign_up_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -6,11 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../shared/auth/application/auth_notifier.dart';
+import '../../../shared/utils/alert_helper.dart';
 import '../../../shared/utils/dialog_helper.dart';
 import '../../../shared/widgets/app_logo.dart';
 import '../../../shared/widgets/v_button.dart';
 import '../../../style/style.dart';
 import '../../signup/application/states/sign_up_state.dart';
+import '../application/sign_up_notifier.dart';
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({super.key});
@@ -28,14 +29,19 @@ class SignUpPage extends HookConsumerWidget {
         value.when(
           failure: (failure) => DialogHelper.showCustomDialog(
             context,
-            failure.maybeWhen(
+            failure.when(
               alreadyExist: () => 'User Sudah Ada',
-              orElse: () => 'Storage',
+              storage: (err) => 'Storage Error $err',
             ),
           ),
-          success: () => ref
-              .read(authNotifierProvider.notifier)
-              .checkAndUpdateAuthStatus(),
+          success: () {
+            return AlertHelper.showSnackBar(context,
+                message: 'Sign Up Berhasil',
+                color: Palette.green,
+                onDone: ref
+                    .read(authNotifierProvider.notifier)
+                    .checkAndUpdateAuthStatus);
+          },
           initial: () => null,
         );
       } else {

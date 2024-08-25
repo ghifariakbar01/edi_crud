@@ -4,6 +4,6 @@ part 'create_user_failure.freezed.dart';
 
 @freezed
 class CreateUserFailure with _$CreateUserFailure {
-  factory CreateUserFailure.storage() = _Storage;
   factory CreateUserFailure.alreadyExist() = _AlreadyExist;
+  factory CreateUserFailure.storage(String message) = _Storage;
 }

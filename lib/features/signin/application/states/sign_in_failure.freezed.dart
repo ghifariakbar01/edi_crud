@@ -18,39 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() storage,
     required TResult Function() notFound,
+    required TResult Function(String message) storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? storage,
     TResult? Function()? notFound,
+    TResult? Function(String message)? storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? storage,
     TResult Function()? notFound,
+    TResult Function(String message)? storage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Storage value) storage,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Storage value) storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Storage value)? storage,
     TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Storage value)? storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Storage value)? storage,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Storage value)? storage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,108 +72,6 @@ class _$SignInFailureCopyWithImpl<$Res, $Val extends SignInFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$StorageImplCopyWith<$Res> {
-  factory _$$StorageImplCopyWith(
-          _$StorageImpl value, $Res Function(_$StorageImpl) then) =
-      __$$StorageImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StorageImplCopyWithImpl<$Res>
-    extends _$SignInFailureCopyWithImpl<$Res, _$StorageImpl>
-    implements _$$StorageImplCopyWith<$Res> {
-  __$$StorageImplCopyWithImpl(
-      _$StorageImpl _value, $Res Function(_$StorageImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$StorageImpl implements _Storage {
-  _$StorageImpl();
-
-  @override
-  String toString() {
-    return 'SignInFailure.storage()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StorageImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() storage,
-    required TResult Function() notFound,
-  }) {
-    return storage();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? storage,
-    TResult? Function()? notFound,
-  }) {
-    return storage?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? storage,
-    TResult Function()? notFound,
-    required TResult orElse(),
-  }) {
-    if (storage != null) {
-      return storage();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Storage value) storage,
-    required TResult Function(_NotFound value) notFound,
-  }) {
-    return storage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Storage value)? storage,
-    TResult? Function(_NotFound value)? notFound,
-  }) {
-    return storage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Storage value)? storage,
-    TResult Function(_NotFound value)? notFound,
-    required TResult orElse(),
-  }) {
-    if (storage != null) {
-      return storage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Storage implements SignInFailure {
-  factory _Storage() = _$StorageImpl;
 }
 
 /// @nodoc
@@ -214,8 +112,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() storage,
     required TResult Function() notFound,
+    required TResult Function(String message) storage,
   }) {
     return notFound();
   }
@@ -223,8 +121,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? storage,
     TResult? Function()? notFound,
+    TResult? Function(String message)? storage,
   }) {
     return notFound?.call();
   }
@@ -232,8 +130,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? storage,
     TResult Function()? notFound,
+    TResult Function(String message)? storage,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -245,8 +143,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Storage value) storage,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Storage value) storage,
   }) {
     return notFound(this);
   }
@@ -254,8 +152,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Storage value)? storage,
     TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Storage value)? storage,
   }) {
     return notFound?.call(this);
   }
@@ -263,8 +161,8 @@ class _$NotFoundImpl implements _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Storage value)? storage,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Storage value)? storage,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -276,4 +174,137 @@ class _$NotFoundImpl implements _NotFound {
 
 abstract class _NotFound implements SignInFailure {
   factory _NotFound() = _$NotFoundImpl;
+}
+
+/// @nodoc
+abstract class _$$StorageImplCopyWith<$Res> {
+  factory _$$StorageImplCopyWith(
+          _$StorageImpl value, $Res Function(_$StorageImpl) then) =
+      __$$StorageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$StorageImplCopyWithImpl<$Res>
+    extends _$SignInFailureCopyWithImpl<$Res, _$StorageImpl>
+    implements _$$StorageImplCopyWith<$Res> {
+  __$$StorageImplCopyWithImpl(
+      _$StorageImpl _value, $Res Function(_$StorageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$StorageImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StorageImpl implements _Storage {
+  _$StorageImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'SignInFailure.storage(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StorageImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StorageImplCopyWith<_$StorageImpl> get copyWith =>
+      __$$StorageImplCopyWithImpl<_$StorageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notFound,
+    required TResult Function(String message) storage,
+  }) {
+    return storage(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notFound,
+    TResult? Function(String message)? storage,
+  }) {
+    return storage?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notFound,
+    TResult Function(String message)? storage,
+    required TResult orElse(),
+  }) {
+    if (storage != null) {
+      return storage(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Storage value) storage,
+  }) {
+    return storage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Storage value)? storage,
+  }) {
+    return storage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Storage value)? storage,
+    required TResult orElse(),
+  }) {
+    if (storage != null) {
+      return storage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Storage implements SignInFailure {
+  factory _Storage(final String message) = _$StorageImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$StorageImplCopyWith<_$StorageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

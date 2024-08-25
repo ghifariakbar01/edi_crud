@@ -1,6 +1,6 @@
-import 'package:edi_crud/shared/providers/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../providers/providers.dart';
 import '../infrastructure/user_repository.dart';
 import '../infrastructure/user_storage.dart';
 import 'user.dart';

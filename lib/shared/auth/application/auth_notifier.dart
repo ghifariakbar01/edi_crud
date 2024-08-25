@@ -1,7 +1,7 @@
-import 'package:edi_crud/shared/providers/providers.dart';
-import 'package:edi_crud/shared/user/application/user_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../providers/providers.dart';
+import '../../user/application/user_notifier.dart';
 import '../infrastructures/auth_repository.dart';
 import '../infrastructures/auth_storage.dart';
 import 'states/auth_state.dart';

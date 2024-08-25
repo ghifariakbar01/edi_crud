@@ -4,6 +4,6 @@ part 'sign_in_failure.freezed.dart';
 
 @freezed
 class SignInFailure with _$SignInFailure {
-  factory SignInFailure.storage() = _Storage;
   factory SignInFailure.notFound() = _NotFound;
+  factory SignInFailure.storage(String message) = _Storage;
 }

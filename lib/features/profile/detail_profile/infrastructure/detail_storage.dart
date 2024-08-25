@@ -44,9 +44,7 @@ class DetailProfileStorage implements Storage<DetailProfile> {
         return null;
       }
     } on DatabaseException {
-      await db.execute(
-          'CREATE TABLE $_tableName (id INTEGER PRIMARY KEY, posisi TEXT, dob TEXT, no_ktp TEXT, jenis_kelamin INTEGER)');
-      return read();
+      return [];
     }
   }
 

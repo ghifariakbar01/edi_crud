@@ -1,18 +1,19 @@
-import 'package:edi_crud/features/signout/application/sign_out_notifier.dart';
-import 'package:edi_crud/shared/auth/application/auth_notifier.dart';
-import 'package:edi_crud/shared/user/application/user_controller.dart';
-import 'package:edi_crud/shared/user/application/user_notifier.dart';
-import 'package:edi_crud/shared/widgets/v_async_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../shared/auth/application/auth_notifier.dart';
 import '../../../shared/routes/route_names.dart';
+import '../../../shared/user/application/user_controller.dart';
+import '../../../shared/user/application/user_notifier.dart';
 import '../../../shared/utils/alert_helper.dart';
 import '../../../shared/utils/dialog_helper.dart';
+import '../../../shared/widgets/v_async_widget.dart';
 import '../../../style/style.dart';
-import "package:edi_crud/features/home/presentation/user_item_widget.dart";
+
+import '../../signout/application/sign_out_notifier.dart';
+import 'user_item_widget.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -31,6 +32,7 @@ class HomePage extends HookConsumerWidget {
 
         return AlertHelper.showSnackBar(context,
             message: 'Logout Berhasil',
+            color: Palette.green,
             onDone: ref
                 .read(authNotifierProvider.notifier)
                 .checkAndUpdateAuthStatus);
@@ -57,6 +59,7 @@ class HomePage extends HookConsumerWidget {
 
         return AlertHelper.showSnackBar(context,
             message: '$rows rows affected',
+            color: Colors.green,
             onDone: ref.read(usersNotifierProvider.notifier).getAllUser);
       } else {
         if (state.hasError) {

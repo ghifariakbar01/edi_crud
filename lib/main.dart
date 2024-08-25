@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:edi_crud/shared/widgets/v_async_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sqflite/sqflite.dart';
@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import 'shared/auth/application/auth_notifier.dart';
 import 'shared/auth/application/states/auth_state.dart';
 import 'shared/providers/providers.dart';
+import 'shared/widgets/v_async_widget.dart';
 import 'style/style.dart';
 
 void main() {
